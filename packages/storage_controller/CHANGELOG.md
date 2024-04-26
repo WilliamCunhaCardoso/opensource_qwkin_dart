@@ -1,3 +1,34 @@
+## 2.1.0
+
+ - **FIX**: changelog info.
+ - **FIX**: fix typo on changelogs.
+ - **FIX**: use flutter 3.0.0 instead 3.0.2.
+ - **FIX**: fixed danger token.
+ - **FIX**: fixed danger and added to changelog.
+ - **FIX**: removed deprecated method.
+ - **FIX**: fixed initialization error.
+ - **FIX**: fixed wrong docs.
+ - **FIX**: test fix.
+ - **FIX**: fixed tests.
+ - **FEAT**: upgrade gradle.
+ - **FEAT**: update packages to use flutter 3.0.
+ - **FEAT**: removed .lock from test.
+ - **FEAT**: bumped stable versiomns.
+ - **FEAT**: added example with nullsafety.
+ - **FEAT**: added example to storage controller.
+ - **FEAT**: torch null safety.
+ - **FEAT**: migrated storage package to null safety.
+ - **FEAT**: adjustments for 1.0.0 release.
+ - **FEAT**: implemented storage controller.
+ - **FEAT**: created hive based storage.
+ - **FEAT**: implemented secure storage based.
+ - **FEAT**: created flutter_secure_storage interface.
+ - **FEAT**: created shared preferences based storage.
+ - **FEAT**: first version of shared preferences based storage.
+ - **FEAT**: created storage interface like class.
+ - **FEAT**: initial configuration.
+ - **FEAT**: storage_controller scaffold.
+
 ## [2.0.0] - 2022-06-24
 - chore: Update to use Flutter 3
 - chore: Update dependencies to the newest versions

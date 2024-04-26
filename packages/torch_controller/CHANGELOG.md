@@ -1,3 +1,31 @@
+## 2.1.0
+
+ - **FIX**: changelog info.
+ - **FIX**: fix typo on changelogs.
+ - **FIX**: use flutter 3.0.0 instead 3.0.2.
+ - **FIX**: fixed danger and added to changelog.
+ - **FIX**: turn non nullable ActivityLifecycleCallbacks.
+ - **FIX**: fixed tests.
+ - **FIX**: edited pubspe and android manifest.
+ - **FIX**: fixed android package name.
+ - **FIX**: fixed on radme.
+ - **FIX**: fixed art.
+ - **FIX**: removed unused coverage.
+ - **FIX**: fixed ios build.
+ - **FIX**: fixed some bugs.
+ - **FIX**: fixed analyze.
+ - **FIX**: fixed bootstrap.
+ - **FIX**: test fixes.
+ - **FEAT**: torch usage is not required anymore.
+ - **FEAT**: upgrade gradle.
+ - **FEAT**: update packages to use flutter 3.0.
+ - **FEAT**: bumped stable versiomns.
+ - **FEAT**: torch null safety.
+ - **FEAT**: migrated storage package to null safety.
+ - **FEAT**: initial configuration.
+ - **FEAT**: added flashlight to android.
+ - **FEAT**: added image to readme.
+
 ## [2.0.1] - 2022-07-06
 - feat: Torch usage is not required anymore
 - chore: Update dependencies to the newest versions
