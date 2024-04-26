@@ -4,14 +4,14 @@ on: [pull_request, workflow_dispatch]
 
 env:
   FLUTTER_VERSION: "3.19.5"
-  # SETUP_AND_CACHE_FILEPATH: "./.github/actions/setup-and-cache.yml"
+  SETUP_AND_CACHE_FILEPATH: ./.github/actions/setup-and-cache.yml
 
 jobs:
   setup:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: ./.github/actions/setup-and-cache.yml
+      - uses: ${{ env.SETUP_AND_CACHE_FILEPATH }}
         with:
           java-version: 12.x
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Configure Java, Cache, and Prepare Environment
-        uses: ./.github/actions/setup-and-cache.yml
+        uses: ${{ env.SETUP_AND_CACHE_FILEPATH }}
         with:
           java-version: 12.x
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -36,7 +36,7 @@ jobs:
     needs: setup
     steps:
       - name: Configure Java, Cache, and Prepare Environment
-        uses: ./.github/actions/setup-and-cache.yml
+        uses: ${{ env.SETUP_AND_CACHE_FILEPATH }}
         with:
           java-version: 12.x
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -53,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Configure Java, Cache, and Prepare Environment
-        uses: ./.github/actions/setup-and-cache.yml
+        uses: ${{ env.SETUP_AND_CACHE_FILEPATH }}
         with:
           java-version: 12.x
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -67,7 +67,7 @@ jobs:
     needs: setup
     steps:
       - name: Configure Java, Cache, and Prepare Environment
-        uses: ./.github/actions/setup-and-cache.yml
+        uses: ${{ env.SETUP_AND_CACHE_FILEPATH }}
         with:
           java-version: 12.x
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -81,7 +81,7 @@ jobs:
     needs: setup
     steps:
       - name: Configure Java, Cache, and Prepare Environment
-        uses: ./.github/actions/setup-and-cache.yml
+        uses: ${{ env.SETUP_AND_CACHE_FILEPATH }}
         with:
           java-version: 12.x
           flutter-version: ${{ env.FLUTTER_VERSION }}
