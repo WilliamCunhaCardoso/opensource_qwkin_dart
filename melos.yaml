@@ -1,8 +1,5 @@
 name: opensource_qwkin_dart
 
-versioning:
-  mode: independent
-
 packages:
   - packages/**
 
@@ -43,10 +40,3 @@ scripts:
   # Additional bootstrap lifecycle script
   postbootstrap: |
     tuneup --version || pub global activate tuneup
-
-dev_dependencies:
-  pedantic: 1.9.2
-
-environment:
-  sdk: ">=2.14.0 <3.0.0"
-  flutter: ">=2.10.0"

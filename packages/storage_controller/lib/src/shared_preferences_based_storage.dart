@@ -5,15 +5,15 @@ import 'package:shared_preferences/shared_preferences.dart'
 class SharedPreferencesBasedStorage extends Storage {
   final _argumentErrorMsg = '''
     Current type not supported by shared_preferences Api
-    
+
     Please use one of the current: [String, int, bool, double].
-    
+
     If you think this is an error, please create an issue at: https://https://github.com/4itworks/opensource_qwkin_dart
   ''';
 
   final _unimplementedErrorMsg = '''
     Current method is not supported by shared_preferences api
-        
+
     If you think this is an error, please create an issue at: https://https://github.com/4itworks/opensource_qwkin_dart
   ''';
 
