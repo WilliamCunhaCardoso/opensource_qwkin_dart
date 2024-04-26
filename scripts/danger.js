@@ -1,10 +1,12 @@
-import { danger, warn, fail } from 'danger';
+import { danger, warn, fail } from "danger";
 
-const getIsTrivial = () => (danger.github.pr.body + danger.github.pr.title).includes('[TRIVIAL]');
+const getIsTrivial = () =>
+  (danger.github.pr.body + danger.github.pr.title).includes("[TRIVIAL]");
 
 const encourageBetterCommits = () => {
   const isTrivial = getIsTrivial();
-  const message = 'Some commits messages were badly wrote :( Check some of then!\n';
+  const message =
+    "Some commits messages were badly wrote :( Check some of then!\n";
   const idea = `Please add semantic prefixes to your commit messages!
 
    Prefixes:
@@ -21,10 +23,13 @@ const encourageBetterCommits = () => {
    https://docs.github.com/pt/github/committing-changes-to-your-project/changing-a-commit-message
 
    Also, try to keep your commit messages short! (less than 100 characters)`;
-  let uglyCommits = '';
+  let uglyCommits = "";
 
-  danger.git.commits.forEach(commit => {
-    if (!commit.message.match(/^(feat:)|(fix:)|(chore:)|(Merge)/g) || commit.message.length > 100) {
+  danger.git.commits.forEach((commit) => {
+    if (
+      !commit.message.match(/^(feat:)|(fix:)|(chore:)|(Merge)/g) ||
+      commit.message.length > 100
+    ) {
       uglyCommits += `${commit.sha} - ${commit.message}<br/>`;
     }
   });
@@ -39,8 +44,10 @@ const encourageBetterCommits = () => {
 };
 
 const encourageSmallerPRs = () => {
-  const message = 'You are submiting a big pull request! please keep smaller if you can, to make it easier to review!';
-  const idea = 'You can ignore it if the task has more than 5 points or the lines are from lock changes.'
+  const message =
+    "You are submitting a big pull request! please keep smaller if you can, to make it easier to review!";
+  const idea =
+    "You can ignore it if the task has more than 5 points or the lines are from lock changes.";
   const prThreshold = 600;
 
   if (danger.github.pr.additions + danger.github.pr.deletions > prThreshold) {
@@ -50,15 +57,20 @@ const encourageSmallerPRs = () => {
 
 const validateLockFile = () => {
   if (danger.github.pr) {
-    const pubspecsRegexp = RegExp('packages\\/.*\\/pubspec.yaml');
-    const pubspecsLocksRegexp = RegExp('packages\\/.*\\/pubspec.lock');
+    const pubspecsRegexp = RegExp("packages\\/.*\\/pubspec.yaml");
+    const pubspecsLocksRegexp = RegExp("packages\\/.*\\/pubspec.lock");
 
-    const pubspecChanges = danger.git.modified_files.filter(filepath => pubspecsRegexp.test(filepath));
-    const lockChanges = danger.git.modified_files.filter(filepath => pubspecsLocksRegexp.test(filepath));
+    const pubspecChanges = danger.git.modified_files.filter((filepath) =>
+      pubspecsRegexp.test(filepath)
+    );
+    const lockChanges = danger.git.modified_files.filter((filepath) =>
+      pubspecsLocksRegexp.test(filepath)
+    );
 
     if (pubspecChanges.length > 0 && !(lockChanges.length > 0)) {
-      const message = 'Changes were made to some pubspec.yaml files, but not to pubspec.lock.';
-      const idea = 'Perhaps you need to run `melos bootstrap`?';
+      const message =
+        "Changes were made to some pubspec.yaml files, but not to pubspec.lock.";
+      const idea = "Perhaps you need to run `melos bootstrap`?";
       fail(`${message}<br/><br/><i>${idea}</i>`);
     }
   }
@@ -66,30 +78,42 @@ const validateLockFile = () => {
 
 const ensureAssignee = () => {
   if (danger.github.pr && danger.github.pr.assignee === null) {
-    fail('Please assign someone to merge this PR. Also, please consider assign reviewers.');
+    fail(
+      "Please assign someone to merge this PR. Also, please consider assign reviewers."
+    );
   }
 };
 
 const ensureLabels = () => {
-  if (danger.github.pr && danger.github.issue.labels === null || danger.github.issue.labels.length === 0) {
-    fail('Please assign at least one label to merge this PR.');
+  if (
+    (danger.github.pr && danger.github.issue.labels === null) ||
+    danger.github.issue.labels.length === 0
+  ) {
+    fail("Please assign at least one label to merge this PR.");
   }
 };
 
 const validateTests = () => {
   if (danger.github.pr) {
-    const idea = "That's OK as long as you're refactoring existing code. Take care to not decrease tests coverages!";
-    let message = '';
-    const packagesRegExp = RegExp('packages\\/*\\/lib');
-    const testsRegExp = RegExp('packages\\/*\\/test');
+    const idea =
+      "That's OK as long as you're refactoring existing code. Take care to not decrease tests coverages!";
+    let message = "";
+    const packagesRegExp = RegExp("packages\\/*\\/lib");
+    const testsRegExp = RegExp("packages\\/*\\/test");
 
-    const packagesChanges = danger.git.modified_files.filter(filepath => packagesRegExp.test(filepath));
-    const testPackagesChanges = danger.git.modified_files.filter(filepath => testsRegExp.test(filepath));
+    const packagesChanges = danger.git.modified_files.filter((filepath) =>
+      packagesRegExp.test(filepath)
+    );
+    const testPackagesChanges = danger.git.modified_files.filter((filepath) =>
+      testsRegExp.test(filepath)
+    );
 
-    const hasUntestedChanges = packagesChanges.length > 0 && !(testPackagesChanges.length > 0);
+    const hasUntestedChanges =
+      packagesChanges.length > 0 && !(testPackagesChanges.length > 0);
 
     if (hasUntestedChanges) {
-      message += "There are source changes at the packages, but not on its tests!\n\n";
+      message +=
+        "There are source changes at the packages, but not on its tests!\n\n";
     }
 
     if (message.length > 0) {
@@ -106,5 +130,5 @@ if (danger.github) {
   encourageSmallerPRs();
   encourageBetterCommits();
 } else {
-  warn("No danger.github found")
+  warn("No danger.github found");
 }
