@@ -13,3 +13,5 @@ node_modules/
 # Hive Related
 *.hive
 *storage.lock
+
+.dart_tool/
