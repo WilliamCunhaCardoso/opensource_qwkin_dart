@@ -17,14 +17,14 @@ abstract class StorageController extends Storage {
   final _ensureInitializedMessage = '''
     The [StorageController] subtypes has different initialization methods depending on the storage method
     you are using.
-    
+
     The initialization of the storage types are made when your [StorageController] is instantiated.
-    
+
     To ensure that your storage is ready to use, we provide a future called `StorageController.isInitialized`,
     where you can check if your storage is ready to use.
-    
+
     It will return `true` if the initialization succeeded or `false` if any error occurred.
-    
+
     If you think this is an error, please create an issue at: https://https://github.com/4itworks/opensource_qwkin_dart
   ''';
   final _ensureInitialized = Completer<bool>();
