@@ -1,0 +1,40 @@
+name: Setup and Cache
+
+on:
+  workflow_run:
+    workflows: ["Continuous Integration"]
+    types:
+      - completed
+
+jobs:
+  setup-and-cache:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v2
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+
+      - name: Set up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ inputs.java-version }}
+
+      - name: Configure Flutter Environment
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ inputs.flutter-version }}
+          channel: "stable"
+
+      - name: Prepare Environment and Install Tools
+        run: |
+          ./.github/workflows/scripts/prepare-env.sh
+          ./.github/workflows/scripts/install-tools.sh
+
+      - name: Bootstrap Workspace
+        run: melos bootstrap
